@@ -51,11 +51,11 @@ vehicle_rover1 = connect('tcp:127.0.0.1:5762', wait_ready=False, timeout=30)
 vehicle_boat   = connect('tcp:127.0.0.1:5762', wait_ready=False, timeout=30)
 vehicle_rover2 = connect('tcp:127.0.0.1:5762', wait_ready=False, timeout=30)
 
-vehicle_plane.parameters['WPNAV_SPEED'] = 2000
-vehicle_copter.parameters['WPNAV_SPEED'] = 2000
-vehicle_rover1.parameters['WPNAV_SPEED'] = 2000
-vehicle_boat.parameters['WPNAV_SPEED'] = 2000
-vehicle_rover2.parameters['WPNAV_SPEED'] = 2000
+#vehicle_plane.parameters['WPNAV_SPEED'] = 2000
+#vehicle_copter.parameters['WPNAV_SPEED'] = 2000
+#vehicle_rover1.parameters['WPNAV_SPEED'] = 2000
+#vehicle_boat.parameters['WPNAV_SPEED'] = 2000
+#vehicle_rover2.parameters['WPNAV_SPEED'] = 2000
 
 
 while True:
@@ -70,15 +70,15 @@ while True:
         plane_departure_flg = True
 
     if(True == plane_departure_flg and False == plane_arrive_flg ):
-        print('Plane到着')
         loc_plane = vehicle_plane.location.global_relative_frame
         loc_copter = vehicle_copter.location.global_relative_frame
         distance = get_distance_metres(loc_plane, loc_copter)
         if(distance < 150):
             # Planeが到着
+            print('Plane到着')
             plane_arrive_flg = True
 
-    if(False == copter_depature_flg and True == plane_arrive_flg):
+    if(False == copter_departure_flg and True == plane_arrive_flg):
         print('Copter出発')
         vehicle_copter.arm()
         vehicle_copter.mode = VehicleMode('GUIDED')
