@@ -25,10 +25,10 @@ def get_distance_metres(location1, location2):
 
 
 main_p_loc = LocationGlobalRelative(35.878275,140.338069, 100)
-boat_p_loc = LocationGlobalRelative(35.879768, 140.348495)
-copter_p_loc = LocationGlobalRelative(35.867003, 140.305987)
-namegawa_loc = LocationGlobalRelative(35.876991, 140.348026)
-seven_loc = LocationGlobalRelative(35.877518, 140.295439)
+boat_p_loc = LocationGlobalRelative(35.879768, 140.348495, 0)
+copter_p_loc = LocationGlobalRelative(35.867003, 140.305987, 0)
+namegawa_loc = LocationGlobalRelative(35.876991, 140.348026, 0)
+seven_loc = LocationGlobalRelative(35.877518, 140.295439, 0)
 
 plane_departure_flg = False
 plane_arrive_flg = False
@@ -52,10 +52,10 @@ vehicle_boat   = connect('tcp:127.0.0.1:5762', wait_ready=False, timeout=30)
 vehicle_rover2 = connect('tcp:127.0.0.1:5762', wait_ready=False, timeout=30)
 
 vehicle_plane.parameters['WPNAV_SPEED'] = 2000
-vehicle_plane.parameters['WPNAV_SPEED'] = 2000
-vehicle_plane.parameters['WPNAV_SPEED'] = 2000
-vehicle_plane.parameters['WPNAV_SPEED'] = 2000
-vehicle_plane.parameters['WPNAV_SPEED'] = 2000
+vehicle_copter.parameters['WPNAV_SPEED'] = 2000
+vehicle_rover1.parameters['WPNAV_SPEED'] = 2000
+vehicle_boat.parameters['WPNAV_SPEED'] = 2000
+vehicle_rover2.parameters['WPNAV_SPEED'] = 2000
 
 
 while True:
