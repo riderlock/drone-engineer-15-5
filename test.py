@@ -24,7 +24,7 @@ def get_distance_metres(location1, location2):
     return distance_3d
 
 
-main_p_loc = LocationGlobalRelative(35.878275,140.338069, 100)
+main_p_loc = LocationGlobalRelative(35.878275,140.338069, 0)
 boat_p_loc = LocationGlobalRelative(35.879768, 140.348495, 0)
 copter_p_loc = LocationGlobalRelative(35.867003, 140.305987, 0)
 namegawa_loc = LocationGlobalRelative(35.876991, 140.348026, 0)
@@ -64,12 +64,13 @@ while True:
         vehicle_plane.arm()
         vehicle_plane.mode = VehicleMode('GUIDED')
                                          
-        vehicle_plane.wait_simple_takeoff(20, timeout=20)
+        vehicle_plane.wait_simple_takeoff(10, timeout=20)
         vehicle_plane.simple_goto(main_p_loc)
 
         plane_departure_flg = True
 
     if(True == plane_departure_flg and False == plane_arrive_flg ):
+        print('Plane移動中')
         loc_plane = vehicle_plane.location.global_relative_frame
         loc_copter = vehicle_copter.location.global_relative_frame
         distance = get_distance_metres(loc_plane, loc_copter)
@@ -97,6 +98,11 @@ while True:
         vehicle_boat.simple_goto(boat_p_loc)
 
         copter_departure_flg = True
+
+    if(True == copter_departure_flg and False == copter_arrive_flg ):
+        print('Copter移動中')
+
+
 
 
     time.sleep(1.0)
